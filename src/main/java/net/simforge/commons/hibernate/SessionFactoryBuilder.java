@@ -23,9 +23,15 @@ public class SessionFactoryBuilder {
 
         configuration.setProperty("hibernate.connection.driver_class", driverClass);
         configuration.setProperty("hibernate.connection.url", url);
-        configuration.setProperty("hibernate.connection.username", username);
-        configuration.setProperty("hibernate.connection.password", password);
-        configuration.setProperty("hibernate.connection.pool_size", poolSize);
+
+        if (username != null)
+            configuration.setProperty("hibernate.connection.username", username);
+
+        if (password != null)
+            configuration.setProperty("hibernate.connection.password", password);
+
+        if (poolSize != null)
+            configuration.setProperty("hibernate.connection.pool_size", poolSize);
 
         configuration.setInterceptor(new AuditInterceptor());
 
