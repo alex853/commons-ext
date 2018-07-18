@@ -9,6 +9,9 @@ sourceCompatibility = 1.8
 repositories {
     mavenCentral()
     mavenLocal()
+    maven {
+        url System.getenv('SIMFORGE_REPO_READ_URL')
+    }
 }
 
 dependencies {
@@ -23,14 +26,18 @@ dependencies {
 
 publishing {
     repositories {
-        publications {
-            maven(MavenPublication) {
-                groupId = 'net.simforge'
-                artifactId = 'simforge-commons-ext'
-                version = repositoryVersion
+        maven {
+            url System.getenv('SIMFORGE_REPO_WRITE_URL')
+        }
+    }
 
-                from components.java
-            }
+    publications {
+        maven(MavenPublication) {
+            groupId = 'net.simforge'
+            artifactId = 'simforge-commons-ext'
+            version = repositoryVersion
+
+            from components.java
         }
     }
 }
