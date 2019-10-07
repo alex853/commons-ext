@@ -51,6 +51,11 @@ public class SessionFactoryBuilder {
         return this;
     }
 
+    public SessionFactoryBuilder updateSchemaIfNeeded() {
+        configuration.setProperty("hibernate.hbm2ddl.auto", "update");
+        return this;
+    }
+
     public SessionFactory build() {
         return configuration.buildSessionFactory();
     }
